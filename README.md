@@ -1,36 +1,203 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛒 Smart Academy Tailwind Cart App
 
-## Getting Started
+A simple cart UI built with **Next.js**, **React**, and **Tailwind CSS**. This project fetches cart data from an external API and displays products along with pricing and totals in a clean, responsive layout.
 
-First, run the development server:
+---
+
+## 🚀 Tech Stack
+
+* **Next.js 16**
+* **React 19**
+* **Tailwind CSS 4**
+* **ESLint**
+
+---
+
+## 📦 Features
+
+* Fetches cart data from a public API (`https://dummyjson.com/carts/1`)
+* Displays:
+
+  * Product image
+  * Title
+  * Quantity & price
+  * Total per product
+* Shows cart summary:
+
+  * Total items
+  * Total quantity
+  * Discounted total price
+* Responsive UI (mobile + desktop)
+* Styled with Tailwind CSS utility classes
+
+---
+
+## 📁 Project Structure
+
+```
+/app
+  └── page.jsx   # Main Home component
+/public          # Static assets
+/styles          # Global styles (if applicable)
+```
+
+---
+
+## ⚙️ Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/smart-academy-tailwind-four.git
+cd smart-academy-tailwind-four
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+---
+
+## 🧑‍💻 Development
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open in browser:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🏗️ Build & Production
 
-To learn more about Next.js, take a look at the following resources:
+Build the app:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Start production server:
 
-## Deploy on Vercel
+```bash
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔍 Code Overview
+
+### Data Fetching
+
+The app uses `useEffect` to fetch cart data:
+
+```js
+useEffect(() => {
+  fetch("https://dummyjson.com/carts/1")
+    .then((resp) => resp.json())
+    .then((res) => setCart(res));
+}, []);
+```
+
+---
+
+### State Management
+
+```js
+const [cart, setCart] = useState(null);
+```
+
+* Stores cart data
+* Initially `null` until API response arrives
+
+---
+
+### Rendering Products
+
+```js
+cart?.products?.map((product) => (...)
+```
+
+* Uses optional chaining to prevent runtime errors
+* Iterates through products and renders UI cards
+
+---
+
+### Cart Summary
+
+```js
+cart?.discountedTotal.toFixed(2)
+```
+
+* Displays formatted totals
+* Includes discount calculation from API
+
+---
+
+## 🎨 Styling
+
+* Tailwind CSS utility classes
+* Responsive layout using:
+
+  * `flex`
+  * `sm:` breakpoints
+* Card-based UI with shadows and rounded corners
+
+---
+
+## 📌 Scripts
+
+```json
+"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "eslint"
+}
+```
+
+---
+
+## 🧪 Linting
+
+Run ESLint:
+
+```bash
+npm run lint
+```
+
+---
+
+## 📡 API Used
+
+* DummyJSON Cart API
+  https://dummyjson.com/carts/1
+
+---
+
+## ⚠️ Notes / Improvements
+
+* Add loading state while fetching data
+* Add error handling for API failures
+* Improve accessibility (ARIA labels, alt text enhancements)
+* Add cart interactions (remove item, update quantity)
+* Integrate real backend or database
+
+---
+
+## 📄 License
+
+This project is private and created for educational purposes.
+
+---
+
+## 👨‍💻 Author
+
+Developed as part of Smart Academy training.
